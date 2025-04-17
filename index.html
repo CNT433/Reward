@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>多选框加数值</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+            overflow-y: auto; /* 允许页面滚动 */
+        }
+        .value {
+            position: sticky;
+            top: 0; /* 设置数值始终固定在视口顶部 */
+            font-size: 48px; /* 增大字体 */
+            background-color: white; /* 设置背景色，避免和页面内容重叠 */
+            width: 100%;
+            text-align: center;
+            z-index: 1000; /* 确保数值显示在最上层 */
+            padding: 10px 0;
+        }
+        .checkbox-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .checkbox-container label {
+            font-size: 24px; /* 增大选项字体 */
+            margin: 10px 0;
+        }
+        .divider {
+            width: 50%;
+            height: 2px;
+            background-color: #ccc;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="value" id="value">0</div>
+    
+    <div class="checkbox-container">
+        <label><input type="checkbox" class="checkbox" onchange="updateValue(1.1)"> 按时起身</label>
+        <label><input type="checkbox" class="checkbox" onchange="updateValue(2)"> 按时早晨</label>
+        <label><input type="checkbox" class="checkbox" onchange="updateValue(3)"> 按时工作</label>
+        <label><input type="checkbox" class="checkbox" onchange="updateValue(4)"> 按时英语</label>
+        <label><input type="checkbox" class="checkbox" onchange="updateValue(1)"> 按时思考</label>
+        <label><input type="checkbox" class="checkbox" onchange="updateValue(2.1)"> 按时杂活</label>
+        <div class="divider"></div> <!-- 分割线 -->
+        <label><input type="checkbox" class="checkbox" onchange="updateValue(3)"> 选项 3</label>
+        <label><input type="checkbox" class="checkbox" onchange="updateValue(4)"> 选项 4</label>
+        <label><input type="checkbox" class="checkbox" onchange="updateValue(1)"> 选项 1</label>
+        <label><input type="checkbox" class="checkbox" onchange="updateValue(2)"> 选项 2</label>
+        <div class="divider"></div> <!-- 分割线 -->
+        <label><input type="checkbox" class="checkbox" onchange="updateValue(3)"> 选项 3</label>
+        <label><input type="checkbox" class="checkbox" onchange="updateValue(4)"> 选项 4</label>
+        <label><input type="checkbox" class="checkbox" onchange="updateValue(1)"> 选项 1</label>
+        <label><input type="checkbox" class="checkbox" onchange="updateValue(2)"> 选项 2</label>
+        <div class="divider"></div> <!-- 分割线 -->
+        <label><input type="checkbox" class="checkbox" onchange="updateValue(3)"> 选项 3</label>
+        <label><input type="checkbox" class="checkbox" onchange="updateValue(4)"> 选项 4</label>
+    </div>
+
+    <script>
+        let totalValue = 0;
+
+        function updateValue(value) {
+            // 如果选中，增加相应的值，否则减少
+            if (event.target.checked) {
+                totalValue += value;
+            } else {
+                totalValue -= value;
+            }
+            // 将总值保留两位小数
+            document.getElementById('value').textContent = totalValue.toFixed(2);
+        }
+    </script>
+</body>
+</html>
